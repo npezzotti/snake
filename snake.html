@@ -6,11 +6,11 @@
     </head>
     <body>
         <div id="score">0</div>
-        <canvas id="canvas" width="300" height="300"></canvas>
+        <canvas id="canvas" width="500" height="500" style="text-align: center;"></canvas>
         <script>
             document.addEventListener("keydown", changeDirection)
 
-            const speed = 100;
+            const speed = 80;
             const canvas_border_color = 'black';
             const canvas_color = "white";
             const snake_color = 'lightgreen';
@@ -21,7 +21,7 @@
             const canvas = document.getElementById("canvas");
             const context = canvas.getContext("2d");
 
-            let snake = [  {x: 150, y: 150},  {x: 140, y: 150},  {x: 130, y: 150},  {x: 120, y: 150},  {x: 110, y: 150},];
+            let snake = [  {x: 250, y: 250},  {x: 240, y: 250},  {x: 230, y: 250},  {x: 220, y: 250},  {x: 210, y: 250},];
 
             let dx = 10;
             let dy = 0;

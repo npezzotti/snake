@@ -37,14 +37,13 @@
             let dy = 0;
             let foodX;
             let foodY;
-            let score = document.getElementById("score");
             let hasChanged;
+
+            let score = document.getElementById("score");
             let highScore = document.getElementById("high-score");
-            if (localStorage.getItem("high-score") == null) {
-                highScore.innerHTML = 0;
-            } else {
-                highScore.innerHTML = localStorage.getItem("high-score");
-            }
+            let localHighScore = localStorage.getItem("high-score") == null ? 0 : localStorage.getItem("high-score");
+            highScore.innerHTML = localHighScore;
+            console.log("high score", parseInt(highScore.innerHTML), "local", localHighScore)
 
             displayFood()
             main()
@@ -71,7 +70,7 @@
 
             function main() {
                 setInterval(() => {  
-                    if (gameOver()) return;
+                    if (gameOver()) return end();
                     clear();    
                     drawSnake();
                     drawFood();
@@ -112,10 +111,6 @@
                 if (ateFood) {
                     displayFood();
                     score.innerHTML = parseInt(score.innerHTML) + 10;
-                    if (score.innerHTML > highScore.innerHTML) {
-                        localStorage.setItem("high-score", score.innerHTML);
-                        highScore.innerHTML = localStorage.getItem("high-score");
-                    }
                 } else {
                     snake.pop();
                 }
@@ -146,6 +141,13 @@
                 }
                 const hitWall = snake[0].x < 0 || snake[0].x > canvas.width - 10 || snake[0].y < 0 || snake[0].y > canvas.height - 10;
                 return hitWall
+            }
+
+            function end() {
+                if (score.innerHTML > highScore.innerHTML) {
+                        localStorage.setItem("high-score", score.innerHTML);
+                    }
+                return;
             }
         </script>
     </body>

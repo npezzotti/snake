@@ -1,27 +1,21 @@
 <!DOCTYPE html>
 <html>
     <head>
-  	    <title>Snake by Nathan</title>
-          <link href="https://fonts.googleapis.com/css?family=Indie+Flower&display=swap" rel="stylesheet">    
+  	    <title>Snake Game</title>
+        <link href="https://fonts.googleapis.com/css?family=Antic+Slab" rel="stylesheet">
     </head>
-    <body style="font-family: 'Indie Flower', cursive;">
-        <div style="display: flex; flex-direction: row; justify-content: space-around;">
-            <h1>Snake</h1>
-            <div style="display: flex; flex-direction: row;">
-                <h2 style="padding-right: 15px;">Score:</h2>
-                <h2 id="score">0</h2>
-            </div>
-        </div>
-        <canvas id="canvas" width="500" height="500" style="display: block; margin: 50px auto"></canvas>
+    <body>
+        <div id="score">0</div>
+        <canvas id="canvas" width="500" height="500" style="text-align: center;"></canvas>
         <script>
             document.addEventListener("keydown", changeDirection)
 
             const speed = 80;
             const canvas_border_color = 'black';
             const canvas_color = "white";
-            const snake_color = 'yellow';
-            const snake_border_color = 'lightgreen';
-            const food_color = 'green';
+            const snake_color = 'lightgreen';
+            const snake_border_color = 'darkgreen';
+            const food_color = 'yellow';
             const food_border_color = 'black';
 
             const canvas = document.getElementById("canvas");

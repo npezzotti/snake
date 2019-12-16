@@ -43,10 +43,20 @@
             let highScore = document.getElementById("high-score");
             let localHighScore = localStorage.getItem("high-score") == null ? 0 : localStorage.getItem("high-score");
             highScore.innerHTML = localHighScore;
-            console.log("high score", parseInt(highScore.innerHTML), "local", localHighScore)
 
             displayFood()
             main()
+
+            function main() {
+                setTimeout(() => {  
+                    if (gameOver()) return end();
+                    clear();    
+                    drawSnake();
+                    drawFood();
+                    moveSnake();
+                    main();
+                }, speed)
+            }
 
             function changeDirection(event) {
                 const left = 37;  
@@ -68,15 +78,6 @@
                 hasChanged = false;
             }
 
-            function main() {
-                setInterval(() => {  
-                    if (gameOver()) return end();
-                    clear();    
-                    drawSnake();
-                    drawFood();
-                    moveSnake();
-                }, speed)
-            }
 
             function clear() {
                 context.fillStyle = canvas_color;
@@ -144,10 +145,18 @@
             }
 
             function end() {
+                console.log("end")
                 if (score.innerHTML > highScore.innerHTML) {
                         localStorage.setItem("high-score", score.innerHTML);
-                    }
-                return;
+                }
+                if (confirm("Game Over! Play Again?")) {
+                    snake = [  {x: 250, y: 250},  {x: 240, y: 250},  {x: 230, y: 250},  {x: 220, y: 250},  {x: 210, y: 250},];
+                    dx = 10;
+                    dy = 0;
+                    highScore.innerHTML = localStorage.getItem("high-score");
+                    displayFood()
+                    main()
+                } else return;
             }
         </script>
     </body>
